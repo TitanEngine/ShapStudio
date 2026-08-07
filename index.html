@@ -206,6 +206,31 @@
     }
 
     /* HERO SECTION */
+    .tagline-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(37, 99, 235, 0.12);
+      border: 1px solid rgba(59, 130, 246, 0.35);
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--brand-light);
+      letter-spacing: 0.5px;
+      margin-bottom: 28px;
+      box-shadow: 0 0 14px rgba(37, 99, 235, 0.2);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--status-success);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--status-success);
+    }
+
     .hero-heading {
       font-size: 68px;
       font-weight: 900;
@@ -464,6 +489,11 @@
   <main>
     <!-- ACT I: HERO (SHAP STUDIO BRANDING & POSITIONING) -->
     <div class="hero-container">
+      <div class="tagline-badge">
+        <span class="status-dot"></span>
+        Less Hardware. More Performance.
+      </div>
+
       <h1 class="hero-heading">
         SHAP STUDIO<br>
         <span>Building Next-Generation Graphics & Computing Platforms</span>
