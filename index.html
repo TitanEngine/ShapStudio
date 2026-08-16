@@ -1,860 +1,893 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SHAP STUDIO — High-Performance Computing & Graphics Platforms</title>
-  <meta name="description" content="SHAP STUDIO is an Indian deep-technology enterprise building bare-metal performance software architectures, Titan Engine, and FL Protocol.">
-  <meta name="keywords" content="SHAP STUDIO, Titan Engine, FL Protocol, Deep Tech, Performance Optimization, Ameen Ullah Khan">
+<meta charset="UTF-8">
+<title>SHAP STUDIO — Titan Engine™ Prototype Controls Manual (QRate Evaluation)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
-  <!-- Favicon / Tab Logo -->
-  <link rel="icon" type="image/jpeg" href="https://raw.githubusercontent.com/TitanEngine/Titan_Engine_Telemetry/main/media/shap_studio_logo.jpg">
-  <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/TitanEngine/Titan_Engine_Telemetry/main/media/shap_studio_logo.jpg">
+  :root {
+    --primary: #0b1528;
+    --navy: #1e3a8a;
+    --text-primary: #0f172a;
+    --text-secondary: #334155;
+    --text-muted: #64748b;
+    --accent-cyan: #0284c7;
+    --accent-cyan-light: #e0f2fe;
+    --accent-blue: #2563eb;
+    --accent-green: #059669;
+    --accent-amber: #d97706;
+    --border-light: #cbd5e1;
+    --border-dark: #0b1528;
+    --bg-light: #f8fafc;
+    --bg-code: #f1f5f9;
+  }
 
-  <!-- Google Fonts: Inter & JetBrains Mono for Enterprise Precision -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  @page {
+    size: A4;
+    margin: 10mm 12mm;
+  }
 
-  <style>
-    /* SHAP STUDIO DESIGN SYSTEM: TIMELESS ENTERPRISE RESEARCH LAB */
-    :root {
-      --bg-dark: #05070d;
-      --bg-surface: #0a0e1a;
-      --bg-card: #0f172a;
-      --border-subtle: rgba(255, 255, 255, 0.08);
-      --border-accent: #3b82f6;
-      --brand-primary: #2563eb;
-      --brand-accent: #3b82f6;
-      --brand-light: #60a5fa;
-      --status-success: #10b981;
-      --text-heading: #ffffff;
-      --text-body: #cbd5e1;
-      --text-muted: #94a3b8;
-      --text-dim: #475569;
-      --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-      --font-mono: 'JetBrains Mono', monospace;
-    }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: #ffffff;
+    color: var(--text-primary);
+    line-height: 1.45;
+    font-size: 9.2pt;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
 
-    html {
-      scroll-behavior: smooth;
-      background-color: var(--bg-dark);
-      color: var(--text-body);
-      font-family: var(--font-sans);
-      line-height: 1.65;
-      font-size: 16px;
-      -webkit-font-smoothing: antialiased;
-    }
+  .page {
+    width: 100%;
+    height: 255mm !important;
+    max-height: 255mm !important;
+    padding: 10mm 14mm 14mm 14mm;
+    margin: 0 auto;
+    background: #ffffff;
+    position: relative !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    page-break-after: always !important;
+    break-after: page !important;
+  }
 
-    body {
-      overflow-x: hidden;
-    }
+  /* COVER PAGE */
+  .cover-page {
+    width: 100% !important;
+    height: 255mm !important;
+    max-height: 255mm !important;
+    padding: 16mm 20mm 14mm 24mm !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  }
 
-    /* 3-LAYER PARALLAX COMPUTATIONAL ECOSYSTEM CANVAS */
-    #physics-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 1;
-      pointer-events: none;
-      opacity: 0.75;
-    }
+  .brand-header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+    background: #ffffff;
+    border: 1.5px solid #cbd5e1;
+    padding: 9px 16px;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    margin-bottom: 22px;
+  }
 
-    /* NAVIGATION HEADER */
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      background: rgba(5, 7, 13, 0.88);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border-subtle);
-      padding: 20px 0;
-    }
+  .brand-unit {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
 
-    .nav-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+  .brand-unit-img {
+    height: 44px;
+    width: auto;
+    border-radius: 4px;
+    display: block;
+  }
 
-    .brand-logo {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      text-decoration: none;
-    }
+  .brand-unit-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 
-    .brand-logo-img {
-      height: 38px;
-      width: 38px;
-      border-radius: 8px;
-      object-fit: cover;
-      mix-blend-mode: lighten;
-      border: 1px solid rgba(59, 130, 246, 0.35);
-      box-shadow: 0 0 14px rgba(37, 99, 235, 0.35);
-      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-    }
+  .brand-unit-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 6.5pt;
+    font-weight: 800;
+    color: #64748b;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 2px;
+  }
 
-    .brand-logo:hover .brand-logo-img {
-      transform: scale(1.06);
-      border-color: var(--brand-accent);
-      box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
-    }
+  .brand-unit-tag.cyan {
+    color: var(--accent-cyan);
+  }
 
-    .brand-title {
-      font-weight: 900;
-      font-size: 20px;
-      letter-spacing: 0.5px;
-      color: var(--text-heading);
-    }
+  .brand-unit-title {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 13pt;
+    font-weight: 700;
+    color: var(--primary);
+    line-height: 1.1;
+  }
 
-    .brand-title span {
-      color: var(--brand-light);
-    }
+  .brand-unit-title.navy {
+    color: var(--navy);
+  }
 
-    .nav-links {
-      display: flex;
-      gap: 36px;
-      align-items: center;
-      list-style: none;
-    }
+  .brand-unit-sub {
+    font-size: 7.2pt;
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin-top: 1px;
+  }
 
-    .nav-links a {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
-      transition: color 0.2s ease;
-    }
+  .brand-badge-divider {
+    width: 1.5px;
+    height: 38px;
+    background: #cbd5e1;
+  }
 
-    .nav-links a:hover {
-      color: var(--text-heading);
-    }
+  .cover-main-title {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 32pt;
+    font-weight: 700;
+    color: var(--primary);
+    letter-spacing: -0.5px;
+    line-height: 1.12;
+    margin-bottom: 12px;
+  }
 
-    .btn-nav {
-      background: var(--brand-primary);
-      color: #ffffff !important;
-      padding: 9px 20px;
-      border-radius: 6px;
-      font-weight: 600;
-      font-size: 13px;
-      transition: background 0.2s ease !important;
-    }
+  .cover-divider {
+    width: 100%;
+    height: 2.5px;
+    background: linear-gradient(90deg, var(--primary) 0%, var(--accent-cyan) 60%, transparent 100%);
+    margin: 14px 0 18px 0;
+  }
 
-    .btn-nav:hover {
-      background: #1d4ed8 !important;
-    }
+  .cover-subtitle {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 11.5pt;
+    font-weight: 400;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: 20px;
+    max-width: 95%;
+  }
 
-    /* MAIN CONTAINER & VERTICAL RHYTHM */
-    main {
-      position: relative;
-      z-index: 2;
-    }
+  .cover-badge-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 22px;
+  }
 
-    .hero-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 160px 40px 120px;
-      text-align: left;
-    }
+  .cover-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border: 1px solid var(--navy);
+    background-color: var(--accent-cyan-light);
+    color: var(--navy);
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    border-radius: 2px;
+    text-transform: uppercase;
+  }
 
-    .section-spacing {
-      padding: 140px 40px;
-      max-width: 1200px;
-      margin: 0 auto;
-      border-top: 1px solid var(--border-subtle);
-    }
+  .cover-badge.gold {
+    background-color: #fef3c7;
+    border-color: #d97706;
+    color: #92400e;
+  }
 
-    .section-tag {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--brand-light);
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      margin-bottom: 16px;
-      display: block;
-    }
+  .cover-suite-box {
+    border: 1.5px solid var(--border-dark);
+    background: #ffffff;
+    padding: 14px 18px;
+    margin-bottom: 18px;
+    border-radius: 3px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+  }
 
-    .section-title {
-      font-size: 44px;
-      font-weight: 900;
-      color: var(--text-heading);
-      letter-spacing: -1.5px;
-      line-height: 1.15;
-      margin-bottom: 20px;
-    }
+  .cover-suite-title {
+    font-size: 9.8pt;
+    font-weight: 800;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+  }
 
-    .section-subtitle {
-      font-size: 18px;
-      color: var(--text-muted);
-      max-width: 760px;
-      line-height: 1.65;
-    }
+  .cover-app-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
 
-    /* HERO SECTION */
-    .tagline-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: rgba(37, 99, 235, 0.12);
-      border: 1px solid rgba(59, 130, 246, 0.35);
-      padding: 8px 18px;
-      border-radius: 20px;
-      font-family: var(--font-mono);
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--brand-light);
-      letter-spacing: 0.5px;
-      margin-bottom: 28px;
-      box-shadow: 0 0 14px rgba(37, 99, 235, 0.2);
-    }
+  .cover-app-card {
+    background: var(--bg-light);
+    border: 1px solid var(--border-light);
+    padding: 10px 12px;
+    border-radius: 2px;
+  }
 
-    .status-dot {
-      width: 8px;
-      height: 8px;
-      background-color: var(--status-success);
-      border-radius: 50%;
-      box-shadow: 0 0 8px var(--status-success);
-    }
+  .cover-app-card-title {
+    font-size: 9pt;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 3px;
+    font-family: 'JetBrains Mono', monospace;
+  }
 
-    .hero-heading {
-      font-size: 68px;
-      font-weight: 900;
-      line-height: 1.05;
-      color: var(--text-heading);
-      letter-spacing: -2.5px;
-      margin-bottom: 28px;
-      max-width: 980px;
-    }
+  .cover-app-card-desc {
+    font-size: 7.8pt;
+    color: var(--text-secondary);
+    line-height: 1.35;
+  }
 
-    .hero-heading span {
-      background: linear-gradient(135deg, #ffffff 30%, var(--brand-light) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+  .cover-meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border-light);
+  }
 
-    .hero-lead {
-      font-size: 22px;
-      color: var(--text-muted);
-      max-width: 800px;
-      line-height: 1.6;
-      margin-bottom: 44px;
-    }
+  .cover-meta-label {
+    font-size: 6.8pt;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+  }
 
-    .cta-group {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
+  .cover-meta-value {
+    font-size: 8.5pt;
+    font-weight: 600;
+    color: var(--primary);
+  }
 
-    .btn-solid {
-      background: var(--brand-primary);
-      color: #ffffff;
-      padding: 16px 34px;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 15px;
-      text-decoration: none;
-      transition: background 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
+  /* HEADINGS */
+  .section-title {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 12.5pt;
+    font-weight: 700;
+    color: var(--primary);
+    margin-top: 6px;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 1.5px solid var(--border-dark);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
 
-    .btn-solid:hover {
-      background: #1d4ed8;
-    }
+  .section-title-left {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
 
-    .btn-outline {
-      background: transparent;
-      border: 1px solid var(--border-subtle);
-      color: var(--text-heading);
-      padding: 16px 32px;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 15px;
-      text-decoration: none;
-      transition: all 0.2s ease;
-    }
+  .section-title span.number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5pt;
+    font-weight: 800;
+    color: var(--navy);
+  }
 
-    .btn-outline:hover {
-      border-color: var(--brand-accent);
-      background: var(--bg-surface);
-    }
+  .section-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7pt;
+    font-weight: 700;
+    background: var(--bg-code);
+    color: var(--navy);
+    padding: 2px 6px;
+    border-radius: 2px;
+    border: 1px solid var(--border-light);
+    text-transform: uppercase;
+  }
 
-    /* STATEMENT & PHILOSOPHY BLOCK */
-    .philosophy-statement {
-      font-size: 32px;
-      font-weight: 800;
-      line-height: 1.3;
-      color: var(--text-heading);
-      letter-spacing: -1px;
-      max-width: 900px;
-      margin-top: 30px;
-    }
+  .sub-section-header {
+    font-size: 9.5pt;
+    font-weight: 700;
+    color: var(--navy);
+    margin-top: 8px;
+    margin-bottom: 4px;
+    padding-bottom: 2px;
+    border-bottom: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
 
-    /* IP PORTFOLIO SHOWCASE */
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 32px;
-      margin-top: 50px;
-    }
+  p {
+    margin-bottom: 6px;
+    color: var(--text-secondary);
+    text-align: justify;
+    font-size: 8.6pt;
+    line-height: 1.4;
+  }
 
-    .portfolio-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: 14px;
-      padding: 40px;
-      transition: border-color 0.25s ease, transform 0.25s ease;
-    }
+  /* KEYBOARD KEYCAPS - HARMONIOUS WITH DOCUMENT PALETTE */
+  kbd.key {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px 7.5px;
+    min-width: 22px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8.5pt;
+    font-weight: 700;
+    color: var(--primary);
+    background: #ffffff;
+    border: 1px solid var(--border-light);
+    border-bottom: 2px solid #94a3b8;
+    border-radius: 3.5px;
+    box-shadow: 0 1px 2px rgba(11, 21, 40, 0.04);
+    margin: 1px 2.5px;
+    line-height: 1.25;
+    vertical-align: middle;
+    letter-spacing: 0.2px;
+  }
 
-    .portfolio-card:hover {
-      border-color: var(--border-accent);
-      transform: translateY(-3px);
-    }
+  kbd.key-accent {
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-bottom: 2.2px solid var(--navy);
+    color: var(--navy);
+    box-shadow: 0 1px 2.5px rgba(30, 58, 138, 0.06);
+  }
 
-    .card-tag {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--brand-light);
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-bottom: 12px;
-      display: block;
-    }
+  kbd.key-gold {
+    background: #fefce8;
+    border: 1px solid #fde047;
+    border-bottom: 2px solid #ca8a04;
+    color: #854d0e;
+    box-shadow: 0 1px 2px rgba(202, 138, 4, 0.06);
+  }
 
-    .card-title {
-      font-size: 24px;
-      font-weight: 800;
-      color: var(--text-heading);
-      margin-bottom: 14px;
-    }
+  /* TABLES */
+  table.control-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 6px 0 8px 0;
+    font-size: 8.2pt;
+    border-top: 1.5px solid var(--border-dark);
+    border-bottom: 1.5px solid var(--border-dark);
+  }
 
-    .card-text {
-      color: var(--text-muted);
-      font-size: 15px;
-      line-height: 1.65;
-    }
+  table.control-table th {
+    background: var(--bg-code);
+    color: var(--primary);
+    font-weight: 700;
+    text-align: left;
+    padding: 6px 9px;
+    border-bottom: 1px solid var(--border-dark);
+    font-size: 7.8pt;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
 
-    /* UNFORGETTABLE HERO BENCHMARKS */
-    .hero-metric-section {
-      padding: 160px 40px;
-    }
+  table.control-table td {
+    padding: 6px 9px;
+    border-bottom: 1px solid var(--border-light);
+    color: var(--text-secondary);
+    vertical-align: middle;
+  }
 
-    .hero-metric-unit {
-      margin-bottom: 90px;
-    }
+  table.control-table tr:last-child td { border-bottom: none; }
+  table.control-table tr:nth-child(even) td { background: #fafbfc; }
 
-    .hero-metric-unit:last-child {
-      margin-bottom: 0;
-    }
+  /* CALLOUT PANELS */
+  .callout-panel {
+    border: 1px solid var(--border-light);
+    border-left: 3.5px solid var(--navy);
+    padding: 7px 10px;
+    margin: 6px 0;
+    background: #ffffff;
+    border-radius: 2px;
+  }
 
-    .big-num {
-      font-family: var(--font-mono);
-      font-size: 110px;
-      font-weight: 900;
-      line-height: 0.95;
-      letter-spacing: -4px;
-      background: linear-gradient(135deg, #ffffff 40%, var(--brand-light) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 16px;
-    }
+  .callout-panel.cyan { border-left-color: var(--accent-cyan); background: #f0f9ff; }
+  .callout-panel.green { border-left-color: var(--accent-green); background: #ecfdf5; }
+  .callout-panel.amber { border-left-color: var(--accent-amber); background: #fffbeb; }
 
-    .big-label {
-      font-size: 26px;
-      font-weight: 800;
-      color: var(--text-heading);
-      margin-bottom: 8px;
-    }
+  .callout-title {
+    font-weight: 800;
+    font-size: 8.2pt;
+    color: var(--navy);
+    margin-bottom: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
 
-    .big-desc {
-      font-size: 16px;
-      color: var(--text-muted);
-      max-width: 720px;
-      line-height: 1.6;
-    }
+  .callout-desc {
+    font-size: 8pt;
+    color: var(--text-secondary);
+    line-height: 1.35;
+  }
 
-    /* ENTERPRISE SHOWCASE CARD */
-    .showcase-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-accent);
-      border-radius: 14px;
-      padding: 44px;
-      margin-top: 40px;
-    }
+  /* FOOTER */
+  .page-footer {
+    position: absolute;
+    bottom: 8mm;
+    left: 14mm;
+    right: 14mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border-light);
+    padding-top: 4px;
+    font-size: 7.2pt;
+    color: var(--text-muted);
+    font-family: 'Inter', sans-serif;
+  }
 
-    .showcase-card h3 {
-      font-size: 24px;
-      color: var(--text-heading);
-      margin-bottom: 16px;
-      font-weight: 800;
-    }
+  .page-footer-right {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    color: var(--navy);
+  }
 
-    .showcase-card p {
-      color: var(--text-body);
-      font-size: 16px;
-      line-height: 1.65;
-      margin-bottom: 16px;
-    }
-
-    /* FOOTER */
-    footer {
-      background: #020307;
-      border-top: 1px solid var(--border-subtle);
-      padding: 70px 40px 40px;
-    }
-
-    .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 40px;
-    }
-
-    .footer-info-brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-
-    .footer-info h4 {
-      font-size: 20px;
-      font-weight: 900;
-      color: var(--text-heading);
-    }
-
-    .footer-info p {
-      color: var(--text-muted);
-      font-size: 14px;
-    }
-
-    .footer-copy {
-      color: var(--text-dim);
-      font-size: 13px;
-      margin-top: 50px;
-      border-top: 1px solid var(--border-subtle);
-      padding-top: 24px;
-      text-align: center;
-    }
-
-    @media (max-width: 768px) {
-      .hero-heading { font-size: 42px; }
-      .big-num { font-size: 64px; }
-      .nav-links { display: none; }
-      .hero-container { padding-top: 120px; }
-    }
-  </style>
+  @media print {
+    @page { size: A4; margin: 10mm 12mm; }
+    body { background: #ffffff; margin: 0; padding: 0; }
+    .page { width: 100%; height: 255mm !important; max-height: 255mm !important; padding: 10mm 14mm 14mm 14mm; margin: 0; box-shadow: none; overflow: hidden !important; }
+    .cover-page { width: 100% !important; min-height: 255mm; padding: 16mm 20mm 14mm 24mm !important; page-break-after: always !important; break-after: page !important; }
+    .page-break { page-break-before: always !important; break-before: page !important; }
+    .no-break { page-break-inside: avoid !important; break-inside: avoid !important; }
+    h1, h2, h3, .section-title { page-break-after: avoid !important; break-after: avoid !important; }
+    table, .callout-panel { page-break-inside: avoid !important; break-inside: avoid !important; }
+  }
+</style>
 </head>
 <body>
 
-  <!-- 3-LAYER PARALLAX COMPUTATIONAL ECOSYSTEM CANVAS -->
-  <canvas id="physics-canvas"></canvas>
-
-  <!-- NAVIGATION HEADER -->
-  <header>
-    <div class="nav-container">
-      <a href="#" class="brand-logo">
-        <img src="https://raw.githubusercontent.com/TitanEngine/Titan_Engine_Telemetry/main/media/shap_studio_logo.jpg" alt="SHAP STUDIO Logo" class="brand-logo-img">
-        <div class="brand-title">SHAP <span>STUDIO</span></div>
-      </a>
-      <ul class="nav-links">
-        <li><a href="#portfolio">IP Portfolio</a></li>
-        <li><a href="#benchmarks">Performance</a></li>
-        <li><a href="#about-studio">Enterprise</a></li>
-        <li><a href="https://titanengine.github.io/Titan_Engine_Telemetry/" target="_blank" class="btn-nav">Telemetry Live ↗</a></li>
-      </ul>
-    </div>
-  </header>
-
-  <main>
-    <!-- ACT I: HERO (SHAP STUDIO BRANDING & POSITIONING) -->
-    <div class="hero-container">
-      <div class="tagline-badge">
-        <span class="status-dot"></span>
-        Less Hardware. More Performance.
+<!-- ======================================================================= -->
+<!-- PAGE 1: COVER PAGE                                                      -->
+<!-- ======================================================================= -->
+<div class="cover-page">
+  <div>
+    <div class="brand-header-badge">
+      <div class="brand-unit">
+        <img src="shap_studio_logo.jpg" alt="SHAP STUDIO" class="brand-unit-img" onerror="this.style.display='none'">
+        <div class="brand-unit-text">
+          <div class="brand-unit-tag">STARTUP ENTITY</div>
+          <div class="brand-unit-title">SHAP STUDIO</div>
+          <div class="brand-unit-sub">DPIIT &amp; iStart Rajasthan Registered</div>
+        </div>
       </div>
+      
+      <div class="brand-badge-divider"></div>
 
-      <h1 class="hero-heading">
-        SHAP STUDIO<br>
-        <span>Building Next-Generation Graphics & Computing Platforms</span>
-      </h1>
-
-      <p class="hero-lead">
-        Performance-First Software Architectures Designed to Deliver Higher Performance Using Fewer Hardware Resources.
-      </p>
-
-      <div class="cta-group">
-        <a href="#portfolio" class="btn-solid">
-          Explore IP Portfolio ↓
-        </a>
-        <a href="https://titanengine.github.io/Titan_Engine_Telemetry/" target="_blank" class="btn-outline">
-          Live Telemetry Dashboard ↗
-        </a>
+      <div class="brand-unit">
+        <img src="titan_logo.png" alt="TITAN ENGINE" class="brand-unit-img" onerror="this.style.display='none'">
+        <div class="brand-unit-text">
+          <div class="brand-unit-tag cyan">FLAGSHIP PRODUCT</div>
+          <div class="brand-unit-title navy">TITAN ENGINE™</div>
+          <div class="brand-unit-sub">FL Protocol™ Deep-Tech Substrate</div>
+        </div>
       </div>
     </div>
 
-    <!-- ACT II: ENGINEERING PHILOSOPHY -->
-    <section class="section-spacing">
-      <div class="section-header">
-        <span class="section-tag">ARCHITECTURAL MISSION</span>
-        <h2 class="section-title">Reusable Performance Architectures</h2>
-        <p class="section-subtitle">
-          We engineer foundational software systems that eliminate hardware bottlenecks across graphics, simulation, AI, and search platforms.
-        </p>
-      </div>
+    <div class="cover-main-title">
+      PROTOTYPE<br>CONTROLS MANUAL
+    </div>
+    
+    <div class="cover-divider"></div>
+    
+    <div class="cover-subtitle">
+      Official Technical Evaluation &amp; User Controls Manual for <strong>iStart Rajasthan QRate Assessment Program</strong>, providing complete interactive verification for SHAP STUDIO's standalone executables: <em>TitanEngine_Singularity.exe</em> and <em>TitanEngine_Prototype.exe</em>.
+    </div>
 
-      <div class="philosophy-statement">
-        "We don't build software for a single industry. We build performance-first computing architectures that can power software across multiple industries."
-      </div>
-    </section>
+    <div class="cover-badge-row">
+      <span class="cover-badge gold">iStart Rajasthan</span>
+      <span class="cover-badge">SHAP STUDIO Product</span>
+      <span class="cover-badge">Standalone Evaluation Binaries</span>
+    </div>
 
-    <!-- ACT III: PROPRIETARY IP PORTFOLIO -->
-    <section id="portfolio" class="section-spacing">
-      <div class="section-header">
-        <span class="section-tag">CORE TECHNOLOGIES</span>
-        <h2 class="section-title">Proprietary Software Technologies</h2>
-        <p class="section-subtitle">
-          Built upon our unified bare-metal optimization substrate.
-        </p>
-      </div>
-
-      <div class="portfolio-grid">
-        <!-- Titan Engine -->
-        <div class="portfolio-card">
-          <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-            <span class="card-tag">Flagship Product</span>
-            <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--status-success); background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); padding: 2px 8px; border-radius: 4px;">v1.0 Standalone</span>
-          </div>
-          <h3 class="card-title">Titan Engine™</h3>
-          <p class="card-text">
-            High-performance real-time graphics and spatial physics platform capable of simulating <strong>2,000,000+ interactive GPU meshlet particles</strong> and <strong>15,000 multi-core rigid bodies</strong> at 120 FPS.
-          </p>
-          <div style="display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap;">
-            <a href="https://github.com/TitanEngine/ShapStudio/releases/tag/Standalone-Prototype" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; color: #ffffff; background: var(--brand-primary); padding: 8px 16px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 600; transition: background 0.2s ease;">
-              Download Prototype Suite (v1.0 ZIP) ↓
-            </a>
-            <a href="https://github.com/TitanEngine/Titan_Engine_Telemetry/blob/main/Engine_Showcase_2.md" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; color: var(--brand-light); border: 1px solid var(--border-subtle); padding: 8px 14px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 600; transition: all 0.2s ease;">
-              View Showcase ↗
-            </a>
+    <div class="cover-suite-box">
+      <div class="cover-suite-title">Standalone Prototype Applications</div>
+      <div class="cover-app-grid">
+        <div class="cover-app-card">
+          <div class="cover-app-card-title">1. TitanEngine_Singularity.exe</div>
+          <div class="cover-app-card-desc">
+            <strong>GPU-Driven Silicon Substrate:</strong> 2,000,000 GPU Meshlet particles orbiting a Kerr Black Hole, 6-DOF flycam navigation, live density presets (<kbd class="key">F1</kbd>-<kbd class="key">F4</kbd>), and 100% transparent HUD.
           </div>
         </div>
-
-        <!-- FL Protocol -->
-        <div class="portfolio-card">
-          <span class="card-tag">Core Substrate</span>
-          <h3 class="card-title">FL Protocol</h3>
-          <p class="card-text">
-            Bare-metal Rust software architecture providing 64-byte L1 cache line contiguity (`HardwareRoom`), sub-microsecond O(1) search lookups (120 ns), and zero-yield thread scheduling.
-          </p>
-          <a href="https://github.com/TitanEngine/FL_Protocol" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; margin-top: 18px; color: var(--brand-light); text-decoration: none; font-size: 14px; font-weight: 600; transition: color 0.2s ease;">
-            View FL Protocol Repository ↗
-          </a>
-        </div>
-
-        <!-- Voice Enabled Physics Simulation -->
-        <div class="portfolio-card" style="opacity: 0.95;">
-          <span class="card-tag" style="color: #60a5fa;">CONCEPT ARCHITECTURE</span>
-          <h3 class="card-title">
-            Voice-Enabled Physics
-            <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; padding: 3px 8px; border-radius: 4px; background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); margin-left: 8px; vertical-align: middle;">R&D Concept</span>
-          </h3>
-          <p class="card-text">
-            Conceptual natural language interface research planned to enable engineers and designers to describe physical environments via voice to instantiate interactive 3D GPU physics simulations.
-          </p>
+        <div class="cover-app-card">
+          <div class="cover-app-card-title">2. TitanEngine_Prototype.exe</div>
+          <div class="cover-app-card-desc">
+            <strong>CPU Multi-Core Substrate:</strong> Up to 15,000 rigid bodies across 4 pre-built simulation scenes (<kbd class="key">1</kbd>-<kbd class="key">4</kbd>), kinetic cannonballs, anti-gravity mode, and real-time velocity heatmaps.
+          </div>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
 
-    <!-- ACT IV: UNFORGETTABLE HERO BENCHMARKS (1 METRIC PER DRAMATIC REVEAL) -->
-    <section id="benchmarks" class="section-spacing hero-metric-section">
-      <div class="section-header">
-        <span class="section-tag">PERFORMANCE & BENCHMARKS</span>
-        <h2 class="section-title">Performance Metrics That Matter</h2>
-        <p class="section-subtitle">
-          Verified benchmark achievements logged across FL Protocol and Titan Engine execution suites.
-        </p>
-      </div>
-
-      <div class="hero-metric-unit">
-        <div class="big-num">2,000,000</div>
-        <div class="big-label">GPU Meshlet Particles Simulated @ 120+ FPS</div>
-        <p class="big-desc">Vulkan 1.3 pure VRAM compute pipeline with relativistic Kerr black hole accretion vortex and hardware Task/Mesh amplification.</p>
-      </div>
-
-      <div class="hero-metric-unit">
-        <div class="big-num">120 ns</div>
-        <div class="big-label">Sub-Microsecond O(1) Search Lookup Latency</div>
-        <p class="big-desc">Search latency stays flat within nanosecond boundaries regardless of dataset scale (Verified on 1,000,000 token stress test suite).</p>
-      </div>
-
-      <div class="hero-metric-unit">
-        <div class="big-num">3,412,850</div>
-        <div class="big-label">Tokens / Second Tokenizer Throughput</div>
-        <p class="big-desc">Data benchmark logged with 9.4M symbols/sec interner throughput and 651 ms cold index construction time.</p>
-      </div>
-
-      <div class="hero-metric-unit">
-        <div class="big-num">10,000,000</div>
-        <div class="big-label">Ray Stress Test Queries Executed @ 60 FPS</div>
-        <p class="big-desc">800 ns coalesced spatial ray latency, 420 ns shadow fast exit, and 0 bytes heap memory allocation during ray query loops.</p>
-      </div>
-    </section>
-
-    <!-- ACT V: ENTERPRISE SHOWCASE BRIDGE -->
-    <section id="about-studio" class="section-spacing">
-      <div class="showcase-card">
-        <span class="section-tag">ENTERPRISE IDENTITY</span>
-        <h3>Official Technology Showcase</h3>
-        <p>
-          This website is the official technology showcase of <strong>SHAP STUDIO</strong>. It demonstrates the technical capabilities, architecture, and ongoing empirical progress of <strong>Titan Engine</strong>, <strong>FL Protocol</strong>, and our voice-enabled simulation research.
-        </p>
-        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 0;">
-          All intellectual property, source code repositories, and telemetry benchmarks presented here represent the proprietary commercial technology developed by <strong>SHAP STUDIO</strong> (Sole Proprietorship of Ameen Ullah Khan).
-        </p>
-      </div>
-    </section>
-  </main>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-content">
-      <div class="footer-info">
-        <div class="footer-info-brand">
-          <img src="https://raw.githubusercontent.com/TitanEngine/Titan_Engine_Telemetry/main/media/shap_studio_logo.jpg" alt="SHAP STUDIO Logo" class="brand-logo-img" style="height: 32px; width: 32px;">
-          <h4>SHAP STUDIO</h4>
-        </div>
-        <p>Building Next-Generation Graphics and Computing Platforms.</p>
-        <p style="margin-top: 6px; font-size: 13px;">Titan Engine, FL Protocol and related technologies are developed by SHAP STUDIO.</p>
-        <p style="margin-top: 10px; font-size: 13px; color: var(--text-dim);">Principal Office: Tonk, District Tonk, Rajasthan — 304001</p>
-      </div>
-
+  <div>
+    <div class="cover-meta-grid">
       <div>
-        <div style="font-weight: 700; color: var(--text-heading); margin-bottom: 10px; font-size: 14px;">Products & IP</div>
-        <p style="font-size: 13px; margin-bottom: 6px;"><a href="https://github.com/TitanEngine/Titan_Engine_Telemetry/blob/main/Engine_Showcase_2.md" target="_blank" style="color: var(--brand-light); text-decoration: none; font-weight: 500;">Titan Engine Showcase ↗</a></p>
-        <p style="font-size: 13px; margin-bottom: 6px;"><a href="https://github.com/TitanEngine/FL_Protocol" target="_blank" style="color: var(--brand-light); text-decoration: none; font-weight: 500;">FL Protocol Repository ↗</a></p>
-        <p style="font-size: 13px; color: var(--text-muted);">Voice Enabled Physics Simulation</p>
+        <div class="cover-meta-label">Startup Entity</div>
+        <div class="cover-meta-value">SHAP STUDIO</div>
+      </div>
+      <div>
+        <div class="cover-meta-label">Government Program</div>
+        <div class="cover-meta-value">iStart Rajasthan</div>
+      </div>
+      <div>
+        <div class="cover-meta-label">Document Type</div>
+        <div class="cover-meta-value">Controls Manual</div>
+      </div>
+      <div>
+        <div class="cover-meta-label">Release Version</div>
+        <div class="cover-meta-value">v1.0 Standalone</div>
       </div>
     </div>
+  </div>
+</div>
 
-    <div class="footer-copy">
-      © 2026 SHAP STUDIO. All Rights Reserved.
+<!-- ======================================================================= -->
+<!-- PAGE 2: SHOWCASE 1 — TITAN SINGULARITY CONTROLS                         -->
+<!-- ======================================================================= -->
+<div class="page">
+  <div class="section-title">
+    <div class="section-title-left">
+      <span class="number">01</span>
+      <span>TitanEngine_Singularity.exe — Controls &amp; Hotkeys</span>
     </div>
-  </footer>
+    <span class="section-tag">2M Particles Vortex</span>
+  </div>
 
-  <!-- 3-LAYER PARALLAX COMPUTATIONAL ECOSYSTEM (ULTRA-FINE PARTICLES & AURA) -->
-  <script>
-    const canvas = document.getElementById('physics-canvas');
-    const ctx = canvas.getContext('2d');
+  <p>
+    <strong>TitanEngine_Singularity.exe</strong> runs a real-time simulation of <strong>2,000,000 meshlet particles</strong> spiraling into a relativistic Kerr Black Hole accretion disk. Evaluators can inspect the vortex using full 6-DOF flycam navigation from any angle.
+  </p>
 
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight;
+  <div class="sub-section-header">Keyboard &amp; Mouse Controls</div>
+  <table class="control-table">
+    <thead>
+      <tr>
+        <th style="width: 25%;">Input Control</th>
+        <th style="width: 35%;">Action</th>
+        <th style="width: 40%;">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><kbd class="key key-accent">W</kbd> <kbd class="key key-accent">A</kbd> <kbd class="key key-accent">S</kbd> <kbd class="key key-accent">D</kbd></td>
+        <td>6-DOF Flycam Flight</td>
+        <td>Fly forward (<kbd class="key key-accent">W</kbd>), backward (<kbd class="key key-accent">S</kbd>), and strafe left/right (<kbd class="key key-accent">A</kbd>/<kbd class="key key-accent">D</kbd>).</td>
+      </tr>
+      <tr>
+        <td><kbd class="key key-accent">Q</kbd> / <kbd class="key key-accent">E</kbd></td>
+        <td>Elevation Control</td>
+        <td>Fly down (<kbd class="key key-accent">Q</kbd>) or fly up (<kbd class="key key-accent">E</kbd>) vertically.</td>
+      </tr>
+      <tr>
+        <td><kbd class="key key-accent">Left Shift</kbd></td>
+        <td>Turbo Speed Boost</td>
+        <td>Hold to boost flight speed by 3x (400 &rarr; 1200 units/s).</td>
+      </tr>
+      <tr>
+        <td><kbd class="key key-accent">Right Mouse Drag</kbd></td>
+        <td>360° Free Look</td>
+        <td>Hold right mouse button and drag to look around seamlessly.</td>
+      </tr>
+      <tr>
+        <td><kbd class="key key-accent">C</kbd></td>
+        <td>Toggle Cinematic Auto-Orbit</td>
+        <td>Enables automatic 360° circular camera orbit around the black hole.</td>
+      </tr>
+      <tr>
+        <td><kbd class="key key-accent">H</kbd></td>
+        <td>Toggle On-Screen HUD</td>
+        <td>Hides or shows the transparent telemetry and controls overlay.</td>
+      </tr>
+      <tr>
+        <td><kbd class="key key-accent">P</kbd></td>
+        <td>Pause / Resume Simulation</td>
+        <td>Freezes all particles in space; press again to resume real-time physics.</td>
+      </tr>
+    </tbody>
+  </table>
 
-    window.addEventListener('resize', () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-      initMultilayerEcosystem();
-    });
+  <div class="sub-section-header">Particle Density Presets (Live Switching)</div>
+  <table class="control-table">
+    <thead>
+      <tr>
+        <th style="width: 15%;">Hotkey</th>
+        <th style="width: 25%;">Particle Count</th>
+        <th style="width: 60%;">Showcase Purpose</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><kbd class="key key-accent">F1</kbd></td>
+        <td><strong>250,000</strong> Particles</td>
+        <td>Lightweight high-speed mode for ultra-high framerates (&gt;140 FPS).</td>
+      </tr>
+      <tr>
+        <td><kbd class="key key-accent">F2</kbd></td>
+        <td><strong>500,000</strong> Particles</td>
+        <td>Balanced high-density accretion disk with clear orbital streamlines.</td>
+      </tr>
+      <tr>
+        <td><kbd class="key key-accent">F3</kbd></td>
+        <td><strong>1,000,000</strong> Particles</td>
+        <td>Cinematic baseline density showcasing full 3D cyclone funnel and disk.</td>
+      </tr>
+      <tr>
+        <td><kbd class="key key-accent">F4</kbd></td>
+        <td><strong>2,000,000</strong> Particles</td>
+        <td>Maximum hardware particle stress test across GPU silicon VRAM.</td>
+      </tr>
+    </tbody>
+  </table>
 
-    let bgNodes = [];
-    let midNodes = [];
-    let fgSparks = [];
+  <div class="callout-panel cyan">
+    <div class="callout-title">Holographic Transparent HUD</div>
+    <div class="callout-desc">
+      The HUD overlay is 100% transparent. No dark boxes obstruct the black hole vortex. Live stats (FPS, active particle count, singularity mass, event horizon radius) float directly over the 3D space particles. Press <kbd class="key">H</kbd> anytime for clean fullscreen viewing.
+    </div>
+  </div>
 
-    // LAYER 1: BACKGROUND NODES (Ultra-fine ambient depth)
-    class BGNode {
-      constructor() {
-        this.reset();
-      }
-      reset() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.radius = Math.random() * 0.8 + 1.2; // 1.2px to 2.0px (Ultra-fine)
-        this.vx = (Math.random() - 0.5) * 0.07;
-        this.vy = (Math.random() - 0.5) * 0.07;
-        this.alpha = Math.random() * 0.15 + 0.12;
-        this.pulseSpeed = Math.random() * 0.005 + 0.002;
-        this.pulsePhase = Math.random() * Math.PI * 2;
-      }
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-        if (this.x < 0) this.x = width;
-        if (this.x > width) this.x = 0;
-        if (this.y < 0) this.y = height;
-        if (this.y > height) this.y = 0;
-        this.pulsePhase += this.pulseSpeed;
-      }
-      draw() {
-        const currentAlpha = this.alpha + Math.sin(this.pulsePhase) * 0.06;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(37, 99, 235, ${currentAlpha})`;
-        ctx.fill();
-      }
-    }
+  <div class="page-footer">
+    <div>SHAP STUDIO — TITAN ENGINE™ CONTROLS MANUAL</div>
+    <div class="page-footer-right">PAGE 02 / 04</div>
+  </div>
+</div>
 
-    // LAYER 2: MIDGROUND NODES (Ultra-fine compute nodes & subtle aura)
-    class MidNode {
-      constructor(id) {
-        this.id = id;
-        this.reset();
-      }
-      reset() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.radius = Math.random() * 0.6 + 0.8; // 0.8px to 1.4px (Ultra-fine)
-        this.vx = (Math.random() - 0.5) * 0.16;
-        this.vy = (Math.random() - 0.5) * 0.16;
-        this.lum = Math.random() < 0.25 ? 0.65 : 0.35; 
-        this.targetLum = this.lum;
-        this.lumSpeed = 0.006 + Math.random() * 0.008;
-        this.hue = 218;
-      }
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-        if (this.x < 0) this.x = width;
-        if (this.x > width) this.x = 0;
-        if (this.y < 0) this.y = height;
-        if (this.y > height) this.y = 0;
+<!-- ======================================================================= -->
+<!-- PAGE 3: SHOWCASE 2 — TITAN PROTOTYPE CONTROLS                           -->
+<!-- ======================================================================= -->
+<div class="page">
+  <div class="section-title">
+    <div class="section-title-left">
+      <span class="number">02</span>
+      <span>TitanEngine_Prototype.exe — Controls &amp; Scenes</span>
+    </div>
+    <span class="section-tag">15K Rigid Bodies</span>
+  </div>
 
-        this.lum += (this.targetLum - this.lum) * this.lumSpeed;
+  <p>
+    <strong>TitanEngine_Prototype.exe</strong> demonstrates high-performance rigid body physics simulation with up to <strong>15,000 interacting bodies</strong>, multiple interactive stress scenes, kinetic collisions, and zero-jitter resting stacks.
+  </p>
 
-        if (Math.random() < 0.003) {
-          this.targetLum = Math.random() < 0.3 ? 0.85 : 0.30;
-        }
-      }
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `hsla(${this.hue}, 85%, 65%, ${this.lum})`;
-        ctx.fill();
+  <div class="sub-section-header">Scene Selection Hotkeys</div>
+  <table class="control-table">
+    <thead>
+      <tr>
+        <th style="width: 15%;">Key</th>
+        <th style="width: 25%;">Scene Name</th>
+        <th style="width: 60%;">Description &amp; Behavior</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><kbd class="key key-accent">1</kbd></td>
+        <td><strong>Container Yard</strong></td>
+        <td>High-altitude drop of shipping containers testing high-velocity impact.</td>
+      </tr>
+      <tr>
+        <td><kbd class="key key-accent">2</kbd></td>
+        <td><strong>50-Layer Pyramid</strong></td>
+        <td>Multi-layer pyramid stack demonstrating zero-jitter rest equilibrium.</td>
+      </tr>
+      <tr>
+        <td><kbd class="key key-accent">3</kbd></td>
+        <td><strong>Kinetic Avalanche</strong></td>
+        <td>Massive stream of bodies sliding and tumbling down an inclined slope.</td>
+      </tr>
+      <tr>
+        <td><kbd class="key key-accent">4</kbd></td>
+        <td><strong>Destructible Towers</strong></td>
+        <td>Multi-column skyscraper towers ready to be shattered by impacts.</td>
+      </tr>
+    </tbody>
+  </table>
 
-        if (this.lum > 0.6) {
-          ctx.beginPath();
-          ctx.arc(this.x, this.y, this.radius * 2.0, 0, Math.PI * 2); // Tight aura
-          ctx.fillStyle = `rgba(59, 130, 246, ${this.lum * 0.20})`;
-          ctx.fill();
-        }
-      }
-    }
+  <div class="sub-section-header">Interactive Controls &amp; Experiments</div>
+  <table class="control-table">
+    <thead>
+      <tr>
+        <th style="width: 25%;">Input Hotkey</th>
+        <th style="width: 35%;">Action</th>
+        <th style="width: 40%;">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><kbd class="key key-accent">SPACE</kbd></td>
+        <td>Launch Kinetic Cannonball</td>
+        <td>Fires a high-velocity heavy projectile directly into the scene.</td>
+      </tr>
+      <tr>
+        <td><kbd class="key key-accent">G</kbd></td>
+        <td>Toggle Gravity (Zero-G)</td>
+        <td>Disables gravity to let bodies float, then re-enables to watch them settle.</td>
+      </tr>
+      <tr>
+        <td><kbd class="key key-accent">C</kbd></td>
+        <td>Velocity Heatmap Mode</td>
+        <td>Color-codes bodies from blue (slow/resting) to bright yellow/red (fast).</td>
+      </tr>
+      <tr>
+        <td><kbd class="key key-accent">R</kbd></td>
+        <td>Instant Scene Reset</td>
+        <td>Resets all objects to their initial positions immediately.</td>
+      </tr>
+      <tr>
+        <td><kbd class="key key-accent">P</kbd></td>
+        <td>Pause Physics Time Step</td>
+        <td>Freezes physics simulation step; press again to resume.</td>
+      </tr>
+      <tr>
+        <td><kbd class="key key-accent">H</kbd></td>
+        <td>Toggle Telemetry HUD</td>
+        <td>Toggles visibility of the diagnostic telemetry overlay.</td>
+      </tr>
+      <tr>
+        <td><kbd class="key key-accent">ESC</kbd></td>
+        <td>Exit Application</td>
+        <td>Performs a clean shutdown and closes the viewport window.</td>
+      </tr>
+    </tbody>
+  </table>
 
-    // LAYER 3: FOREGROUND SPARKS (Ultra-fine luminous attention sparks & subtle aura halo)
-    class FGSpark {
-      constructor() {
-        this.reset();
-      }
-      reset() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.radius = Math.random() * 0.5 + 0.9; // 0.9px to 1.4px (Ultra-fine)
-        this.vx = (Math.random() - 0.5) * 0.18;
-        this.vy = (Math.random() - 0.5) * 0.18;
-        this.alpha = 0.80 + Math.random() * 0.20;
-        this.sparkTimer = Math.floor(Math.random() * 180 + 120);
-      }
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-        if (this.x < 0) this.x = width;
-        if (this.x > width) this.x = 0;
-        if (this.y < 0) this.y = height;
-        if (this.y > height) this.y = 0;
+  <div class="sub-section-header">Body Count Workload Scaling</div>
+  <table class="control-table">
+    <thead>
+      <tr>
+        <th style="width: 14%;"><kbd class="key key-accent">F1</kbd></th>
+        <th style="width: 14%;"><kbd class="key key-accent">F2</kbd></th>
+        <th style="width: 14%;"><kbd class="key key-accent">F3</kbd></th>
+        <th style="width: 14%;"><kbd class="key key-accent">F4</kbd></th>
+        <th style="width: 14%;"><kbd class="key key-accent">F5</kbd></th>
+        <th style="width: 14%;"><kbd class="key key-accent">F6</kbd></th>
+        <th style="width: 16%;"><kbd class="key key-accent">F7</kbd></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>100 Bodies</td>
+        <td>500 Bodies</td>
+        <td>1,000 Bodies</td>
+        <td>2,000 Bodies</td>
+        <td>5,000 Bodies</td>
+        <td>10,000 Bodies</td>
+        <td><strong>15,000 Bodies</strong></td>
+      </tr>
+    </tbody>
+  </table>
 
-        this.sparkTimer--;
-        if (this.sparkTimer <= 0) {
-          this.reset();
-        }
-      }
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(147, 197, 253, ${this.alpha})`;
-        ctx.fill();
+  <div class="page-footer">
+    <div>SHAP STUDIO — TITAN ENGINE™ CONTROLS MANUAL</div>
+    <div class="page-footer-right">PAGE 03 / 04</div>
+  </div>
+</div>
 
-        const glow = ctx.createRadialGradient(
-          this.x, this.y, 0,
-          this.x, this.y, this.radius * 2.5 // Tight aura halo
-        );
-        glow.addColorStop(0, `rgba(147, 197, 253, ${this.alpha * 0.35})`);
-        glow.addColorStop(1, `rgba(147, 197, 253, 0)`);
+<!-- ======================================================================= -->
+<!-- PAGE 4: GETTING STARTED & QUICK REFERENCE                               -->
+<!-- ======================================================================= -->
+<div class="page">
+  <div class="section-title">
+    <div class="section-title-left">
+      <span class="number">03</span>
+      <span>Quick Start &amp; Hardware Reference</span>
+    </div>
+    <span class="section-tag">User Guide</span>
+  </div>
 
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius * 2.5, 0, Math.PI * 2);
-        ctx.fillStyle = glow;
-        ctx.fill();
-      }
-    }
+  <div class="sub-section-header">How to Run the Applications</div>
+  <div class="callout-panel green">
+    <div class="callout-title">Direct Standalone Launch (Zero Dependencies)</div>
+    <div class="callout-desc">
+      Both <strong><code>TitanEngine_Singularity.exe</code></strong> and <strong><code>TitanEngine_Prototype.exe</code></strong> are fully self-contained standalone binaries. Simply double-click either file to launch. No command prompt, Cargo, or external runtime installations are needed.
+    </div>
+  </div>
 
-    function initMultilayerEcosystem() {
-      bgNodes = [];
-      midNodes = [];
-      fgSparks = [];
+  <div class="sub-section-header">System Requirements</div>
+  <table class="control-table">
+    <thead>
+      <tr>
+        <th style="width: 25%;">Component</th>
+        <th style="width: 35%;">Minimum</th>
+        <th style="width: 40%;">Recommended</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Operating System</strong></td>
+        <td>Windows 10 (64-bit)</td>
+        <td>Windows 11 (64-bit)</td>
+      </tr>
+      <tr>
+        <td><strong>Graphics Card (GPU)</strong></td>
+        <td>Vulkan 1.3 Compatible GPU</td>
+        <td>NVIDIA GTX 1660 / RTX 2060+ or AMD RX 5600+</td>
+      </tr>
+      <tr>
+        <td><strong>Processor (CPU)</strong></td>
+        <td>Quad-Core x86_64 Processor</td>
+        <td>6-Core / 8-Core Intel Core i5/i7 or AMD Ryzen 5/7</td>
+      </tr>
+      <tr>
+        <td><strong>System Memory (RAM)</strong></td>
+        <td>4 GB RAM</td>
+        <td>8 GB RAM</td>
+      </tr>
+    </tbody>
+  </table>
 
-      for (let i = 0; i < 45; i++) bgNodes.push(new BGNode());
-      for (let i = 0; i < 85; i++) midNodes.push(new MidNode(i));
-      for (let i = 0; i < 25; i++) fgSparks.push(new FGSpark());
-    }
+  <div class="sub-section-header">Quick Hotkey Reference Sheet</div>
+  <table class="control-table">
+    <thead>
+      <tr>
+        <th style="width: 30%;">Action</th>
+        <th style="width: 35%;">TitanEngine_Singularity.exe</th>
+        <th style="width: 35%;">TitanEngine_Prototype.exe</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Flycam Move / Look</td>
+        <td><kbd class="key key-accent">WASD</kbd> + <kbd class="key key-accent">QE</kbd> + <kbd class="key key-accent">Right Drag</kbd></td>
+        <td><kbd class="key key-accent">WASD</kbd> + <kbd class="key key-accent">QE</kbd> + <kbd class="key key-accent">Left Drag</kbd></td>
+      </tr>
+      <tr>
+        <td>Workload Presets</td>
+        <td><kbd class="key key-accent">F1</kbd>-<kbd class="key key-accent">F4</kbd> (250K to 2M Particles)</td>
+        <td><kbd class="key key-accent">F1</kbd>-<kbd class="key key-accent">F7</kbd> (100 to 15K Bodies)</td>
+      </tr>
+      <tr>
+        <td>Interactive Action</td>
+        <td><kbd class="key key-accent">C</kbd> (Auto-Orbit)</td>
+        <td><kbd class="key key-accent">SPACE</kbd> (Cannonball), <kbd class="key key-accent">G</kbd> (Zero-G)</td>
+      </tr>
+      <tr>
+        <td>Simulation Pause</td>
+        <td><kbd class="key key-accent">P</kbd> (Pause / Resume)</td>
+        <td><kbd class="key key-accent">P</kbd> (Pause / Resume)</td>
+      </tr>
+      <tr>
+        <td>HUD Overlay</td>
+        <td><kbd class="key key-accent">H</kbd> (Transparent HUD)</td>
+        <td><kbd class="key key-accent">H</kbd> (Telemetry HUD)</td>
+      </tr>
+      <tr>
+        <td>Reset Scene</td>
+        <td>Automatic Loop</td>
+        <td><kbd class="key key-accent">R</kbd> (Reset Positions)</td>
+      </tr>
+    </tbody>
+  </table>
 
-    initMultilayerEcosystem();
+  <div class="callout-panel cyan" style="margin-top: 10px;">
+    <div class="callout-title">Telemetry Logs</div>
+    <div class="callout-desc">
+      When running, both applications automatically log microsecond-accurate GPU/CPU timings to <code>titan_telemetry.log</code> and <code>vortex_telemetry.log</code> in the application directory for technical performance audits.
+    </div>
+  </div>
 
-    function processAttentionFlow() {
-      for (let spark of fgSparks) {
-        if (Math.random() < 0.05) {
-          for (let mid of midNodes) {
-            const d = Math.hypot(mid.x - spark.x, mid.y - spark.y);
-            if (d < 120 && mid.lum < 0.4) {
-              mid.targetLum = 0.80;
-              break;
-            }
-          }
-        }
-      }
-    }
+  <div class="page-footer">
+    <div>SHAP STUDIO — TITAN ENGINE™ CONTROLS MANUAL</div>
+    <div class="page-footer-right">PAGE 04 / 04</div>
+  </div>
+</div>
 
-    function renderLoop() {
-      ctx.clearRect(0, 0, width, height);
-
-      processAttentionFlow();
-
-      for (let node of bgNodes) {
-        node.update();
-        node.draw();
-      }
-
-      for (let node of midNodes) {
-        node.update();
-        node.draw();
-      }
-
-      for (let spark of fgSparks) {
-        spark.update();
-        spark.draw();
-      }
-
-      requestAnimationFrame(renderLoop);
-    }
-
-    requestAnimationFrame(renderLoop);
-  </script>
 </body>
 </html>
